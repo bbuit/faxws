@@ -1,0 +1,14 @@
+## and/or by device
+FILETYPE=pdf
+
+case "$DEVICE" in
+teamA)  
+	sudo /bin/chgrp 1001 $FILE	#Team A faxes
+	chmod g+rw $FILE		#Make readable
+;;
+
+teamB)  
+	sudo /bin/chgrp 1002 $FILE	#Team A faxes
+	chmod g+rw $FILE		#Make readable
+;;
+esac
