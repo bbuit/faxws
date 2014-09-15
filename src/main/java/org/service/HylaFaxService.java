@@ -81,7 +81,17 @@ public class HylaFaxService implements FaxService {
 	    
 	    c.open(host);
 	    c.user(user);
-	    c.pass(passwd);
+
+	    try {
+		c.pass(passwd);
+	    }
+	    catch(ServerResponseException e) {
+		//already logged in error
+		if( e.getCode() != 503 ) {
+		    throw e;
+		}
+		    
+	    }
 	    
 	    Job job = c.getJob(Long.parseLong(jobId));
 	    
@@ -121,7 +131,15 @@ public class HylaFaxService implements FaxService {
 	    
 	    c.open(host);
 	    c.user(faxJob.getUser());
-	    c.pass(faxJob.getPassword());
+
+	    try {
+		c.pass(faxJob.getPassword());
+	    }
+	    catch(ServerResponseException e) {
+		if(e.getCode() != 503 ) {
+		    throw e;
+		}
+	    }
 	    
 	    Job job = c.getJob(faxJob.getJobId());
 	    String state = job.getProperty("STATE");
@@ -169,7 +187,15 @@ public class HylaFaxService implements FaxService {
 	    
 	    c.open(host);
 	    c.user(faxJob.getUser());
-	    c.pass(faxJob.getPassword());
+	    
+	    try {
+		c.pass(faxJob.getPassword());
+	    }
+	    catch(ServerResponseException e) {
+		if( e.getCode() != 503 ) {
+		    throw e;
+		}
+	    }
 	    
 	    c.tzone(ClientProtocol.TZONE_LOCAL);
 	    
@@ -229,7 +255,15 @@ public class HylaFaxService implements FaxService {
 	    }
 	    ftpClient.open(host, PORT);	    
 	    ftpClient.user(fax.getUser());
-	    ftpClient.pass(fax.getPassword());
+
+	    try {
+		ftpClient.pass(fax.getPassword());
+	    }
+	    catch(ServerResponseException e) {
+		if(e.getCode() != 503 ) {
+		    throw e;
+		}
+	    }
 	    
 	    
 	    
@@ -331,7 +365,15 @@ public class HylaFaxService implements FaxService {
 	    
 	    hylafaxClient.open(host);
 	    hylafaxClient.user(user);
-	    hylafaxClient.pass(passwd);
+
+	    try {
+		hylafaxClient.pass(passwd);
+	    }
+	    catch(ServerResponseException e) {
+		if(e.getCode() != 503 ) {
+		    throw e;
+		}
+	    }
 	    
 	    return getListings(faxJob, directory, hylafaxClient);
 	    
