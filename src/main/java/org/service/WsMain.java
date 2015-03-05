@@ -1,12 +1,9 @@
 package org.service;
 
+import java.io.IOException;
 import java.util.List;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.util.EnumMorpher;
-import net.sf.json.util.JSONUtils;
-
+import org.codehaus.jackson.map.ObjectMapper;
 import org.common.model.FaxJob;
 import org.util.MiscUtils;
 
@@ -41,11 +38,18 @@ public class WsMain {
 	if( faxJobUpdated == null ) {
 	    return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 	}
+
+	ObjectMapper mapper = new ObjectMapper();
 	
-	JSONUtils.getMorpherRegistry().registerMorpher( new EnumMorpher( FaxJob.STATUS.class ) );
-	JSONObject jsonObject = JSONObject.fromObject(faxJobUpdated);
+	try {
+	    String jsonObject = mapper.writeValueAsString(faxJobUpdated);
 	
-	return Response.ok(jsonObject.toString(), MediaType.APPLICATION_JSON).build();
+	    return Response.ok(jsonObject, MediaType.APPLICATION_JSON).build();
+	}
+	catch( IOException e ) {
+	    MiscUtils.getLogger().error("ERROR CREATING JSON",e);
+	    return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+	}
 	
     }
     
@@ -63,11 +67,18 @@ public class WsMain {
 	List<FaxJob> faxesList =  faxService.getFaxes(faxJob);
 	
 	MiscUtils.getLogger().info("RETURNING " + faxesList.size() + " faxes");
-	JSONUtils.getMorpherRegistry().registerMorpher( new EnumMorpher( FaxJob.STATUS.class ) );
-
-	JSONArray jsonArray = JSONArray.fromObject(faxesList);	
+	ObjectMapper mapper = new ObjectMapper();
+	
+	String jsonArray;
+	try {
+	    jsonArray = mapper.writeValueAsString(faxesList);
+	
+	} catch (IOException e) {
+	    MiscUtils.getLogger().error("ERROR CREATING JSON",e);
+	    return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+	}
 			
-	return Response.ok(jsonArray.toString(), MediaType.APPLICATION_JSON).build();
+	return Response.ok(jsonArray, MediaType.APPLICATION_JSON).build();
 	
     }
     
@@ -91,9 +102,17 @@ public class WsMain {
     	
     	if( faxList.size() == 1 ) {
     	    
-    	    JSONUtils.getMorpherRegistry().registerMorpher( new EnumMorpher( FaxJob.STATUS.class ) );
-    	    JSONObject jsonObject = JSONObject.fromObject(faxList.get(0));
-    	    return Response.ok(jsonObject.toString(), MediaType.APPLICATION_JSON).build();	        	            	   
+    	    ObjectMapper mapper = new ObjectMapper();
+    	    
+    	    String jsonObject;
+	    try {
+		jsonObject = mapper.writeValueAsString(faxList.get(0));
+	    } catch (IOException e) {
+		MiscUtils.getLogger().error(e);
+		return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+	    }
+    	    
+    	    return Response.ok(jsonObject, MediaType.APPLICATION_JSON).build();	        	            	   
     	}
     	else {
     	    return Response.status(Response.Status.NOT_FOUND).build();

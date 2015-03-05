@@ -120,6 +120,11 @@
   		<version>2.4</version>
   		<classifier>jdk15</classifier>
   	</dependency>
+  	<dependency>
+  		<groupId>org.codehaus.jackson</groupId>
+  		<artifactId>jackson-jaxrs</artifactId>
+  		<version>1.9.13</version>
+  	</dependency>
   </dependencies>
   <properties>
   	<cxf-version>2.7.10</cxf-version>

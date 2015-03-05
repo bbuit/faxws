@@ -8,6 +8,9 @@ Configuring modems is beyond the scope of this document.
 Each user will be the group owner of incoming faxes and the names must match the fax users you create.
 3) Create hylafax users using faxadduser.  Remember to name the users the same as the users you created in step 2.
 4) Edit FaxDispatch script found in docs.  You need to specify the modem device id(s) and user id(s) you created above in step 2.  If you are using a usb modem you can write a udev rule to always name a usb slot a particular name.  In effect you are creating an alias which hylafax can then use to communicate with the modem.  An example is found is docs. Do not use this example unedited as the subsystem ids will be different on your computer. Copy FaxDispatch to /etc/hylafax.  Copy the udev rule you created to /etc/udev/rules.d
+4a) Add the following directive to /etc/sudoers without the quotes 
+“uucp    ALL=(root) NOPASSWD: /bin/chgrp”
+This allows hylafax to change the group of the fax files received.
 5) Install tomcat6 and Oracle Java 7 on the server which will host the web service.  This does not need to be the same server as OSCAR or hylafax.  Configure tomcat to accept https connections only and use BASIC authentication.  Therefore the connection from OSCAR to the web service is encrypted and requires a user to log in before accessing the service.  Remember the user and password you set up for step 12.
 6) Export the public ssl key from OSCAR's tomcat and import it into the java trusted keystore of the web service's installation server.  THIS STEP NEEDS TO BE DONE EVEN IF THEY ALL RUN ON THE SAME SERVER.
 7) Clone the project FaxWS from gerrit using git and make sure maven2 is installed.  Edit the file faxProperties.properties to suit your setup.  The file is documented.
