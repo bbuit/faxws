@@ -6,6 +6,12 @@
   <packaging>war</packaging>
   <name>OSCAR Fax</name>
   <description>Frontend to fax service to be used with OSCAR EMR</description>
+  <licenses>
+    <license>
+      <name>GPLv2</name>
+      <url>http://www.gnu.org/licenses/gpl-2.0.txt</url>
+    </license>
+  </licenses>
   <build>
 	<plugins>
 		<plugin>
@@ -16,6 +22,31 @@
 				<target>1.7</target>
 			</configuration>
 		</plugin>
+		<plugin>
+	        <groupId>com.mycila.maven-license-plugin</groupId>
+	        <artifactId>maven-license-plugin</artifactId>
+	        <version>1.10.b1</version>
+	        <executions>
+	          <execution>
+	            <goals>
+	              <goal>check</goal>
+	            </goals>
+	            <configuration>
+	              <header>util/header/mcmaster.txt</header>
+	              <includes>
+                	<include>src/main/java/**/*.java</include>
+                  </includes>                  
+	            </configuration>
+	           </execution>
+	         </executions>	         
+	         <configuration>
+	         	<header>util/header/mcmaster.txt</header>
+	              <includes>
+                	<include>src/main/java/**/*.java</include>
+                  </includes>
+                  <strictCheck>true</strictCheck>	         	
+	         </configuration>
+         </plugin>
 	</plugins>
   </build>
   <dependencies>
