@@ -23,23 +23,25 @@
  */
 package org.service;
 
+import org.srfax.SRFaxService;
 import org.util.FaxProperties;
 
+/**
+ * @version May 26, 2016
+ *  
+ */
 public class FaxServiceFactory {
-    static private FaxProperties faxProperties = FaxProperties.getInstance();
-    
-    static public final String HYLAFAX = "HYLAFAX";
-    
-    
-    static public FaxService create() {
-	
-	String service = faxProperties.getProperty(FaxProperties.SERVICE);
-	
-	if( HYLAFAX.equalsIgnoreCase(service) ) {
-	    return new HylaFaxService();
-	}
-	
-	return null;
-	
+		
+    private static FaxProperties faxProperties = FaxProperties.getInstance();
+     
+    public static FaxService create() {
+
+    	switch ( faxProperties.getAvailableService() ) {
+	    	case HYLAFAX : return new HylaFaxService();
+	    	case SRFAX : return new SRFaxService(faxProperties);
+    	}
+    	
+    	return null;
+
     }
 }

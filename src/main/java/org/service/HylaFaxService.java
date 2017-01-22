@@ -331,6 +331,18 @@ public class HylaFaxService implements FaxService {
 	
 	return true;
     }
+    
+    @Override
+    public FaxJob getFax(FaxJob faxJob) {
+    	
+    	List<FaxJob> faxList = getFaxes(faxJob);
+    	if( ! faxList.isEmpty() && faxList.size() == 1 ) {
+    		return faxList.get(0);
+    	}
+    	
+    	return null;
+    	
+    }
 
     public List<FaxJob> getFaxes(FaxJob faxJob) {
 	FaxProperties faxProperties = FaxProperties.getInstance();

@@ -37,54 +37,64 @@ public class FaxProperties {
     static public String PASSWD = "PASSWORD";
     static public String FAXLINES = "FAXLINES";
     static public String SERVICE = "SERVICE";
+    static public String SSL_PROTOCOL = "SSL_PROTOCOL";
+    public static String READ_TIMEOUT = "READ_TIMEOUT";
+    public static String CONNECT_TIMEOUT = "CONNECT_TIMEOUT";
+    
+    public static enum AvailableService { HYLAFAX, SRFAX }
     
     static private FaxProperties faxProperties;
     private final static Log log = LogFactory.getLog(HylaFaxService.class);
     private Properties properties;
     
     synchronized static public FaxProperties getInstance() {
-	if( faxProperties == null ) {
-	    init();
-	}
-	
-	return faxProperties; 	
+		if( faxProperties == null ) {
+		    init();
+		}
+		
+		return faxProperties; 	
     }
     
     static private void init() {
-	faxProperties = new FaxProperties();	
-	faxProperties.properties = new Properties();
-	String url = "/faxProperties.properties";
-	
-	try {
-	    InputStream is = faxProperties.getClass().getResourceAsStream(url);
-	    if (is == null) is = new FileInputStream(url);
-		    
-	    faxProperties.properties.load(is);
-	}
-	catch(Exception e ) {
-	    log.info("No Propery file");
-	}
+		faxProperties = new FaxProperties();	
+		faxProperties.properties = new Properties();
+		String url = "/faxProperties.properties";
+		
+		try {
+		    InputStream is = faxProperties.getClass().getResourceAsStream(url);
+		    if (is == null) is = new FileInputStream(url);
+			    
+		    faxProperties.properties.load(is);
+		}
+		catch(Exception e ) {
+		    log.info("No Propery file");
+		}
     }
     
     public String getProperty(String key) {
-	return properties.getProperty(key);
+    	return properties.getProperty(key);
     }
     
-    public String getProperty(String key, String defaultval ) {
-	String ret;
-	
-	if( (ret = getProperty(key)) == null ) {
-	    ret = defaultval;
-	}
-	
-	return ret;
+    public String getProperty( String key, String defaultval ) {
+		String ret;
+		
+		if( (ret = getProperty(key)) == null ) {
+		    ret = defaultval;
+		}
+		
+		return ret;
     }
    
     
     public void setProperty(String key, String property) {
-	if( key != null && property != null ) {
-	    properties.setProperty(key, property);
-	}
+		if( key != null && property != null ) {
+		    properties.setProperty(key, property);
+		}
+    }
+    
+    public AvailableService getAvailableService() {  	
+    	String service = getProperty(FaxProperties.SERVICE).trim();
+    	return AvailableService.valueOf( service.toUpperCase() );
     }
 
 }

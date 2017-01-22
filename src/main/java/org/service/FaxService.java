@@ -23,19 +23,22 @@
  */
 package org.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.common.model.FaxJob;
 
 public interface FaxService {
     
-    public FaxJob getFaxStatus(FaxJob faxJob);
+    public FaxJob getFaxStatus(FaxJob faxJob) throws IOException;
     
-    public FaxJob sendFax(FaxJob faxJob);
+    public FaxJob sendFax(FaxJob faxJob) throws IOException;
 	
-    public List<FaxJob> getFaxes(FaxJob faxJob);
+    public List<FaxJob> getFaxes(FaxJob faxJob) throws IOException;
     
-    public boolean deleteFax(FaxJob fax);
+    public FaxJob getFax(FaxJob faxJob) throws IOException;
     
-    public boolean cancelFax(String user, String passwd, String jobId);
+    public boolean deleteFax(FaxJob fax) throws IOException;
+    
+    public boolean cancelFax(String user, String passwd, String jobId) throws IOException;
 }

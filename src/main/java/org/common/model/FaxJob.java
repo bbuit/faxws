@@ -43,41 +43,42 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name="Job")
 public class FaxJob extends AbstractModel<Integer> {
     
-    public enum STATUS {
-	
-	RECEIVED,SENT,COMPLETE,ERROR,WAITING,CANCELLED,RESOLVED;
-	
-    };
+    public enum STATUS {RECEIVED,SENT,COMPLETE,ERROR,WAITING,CANCELLED,RESOLVED,UNKNOWN}
+    public static enum Direction {IN, OUT}
     
-    public FaxJob() {
-	
-	this.id = null;
-	this.user = null;
-	this.password = null;
-	this.file_name = null;
-	this.fax_line = null;
-	this.destination = null;
-	this.status = null;
-	this.numPages = null;
-	this.stamp = null;
-	this.document = null;
-		
+    public FaxJob() {	
+		this.id = null;
+		this.user = null;
+		this.password = null;
+		this.file_name = null;
+		this.fax_line = null;
+		this.destination = null;
+		this.status = null;
+		this.statusString = null;
+		this.numPages = null;
+		this.stamp = null;
+		this.document = null;
+		this.jobId = null;
+		this.senderEmail = null;
+		this.direction = null;
     }
     
 
-    public FaxJob( FaxJob faxJob ) {
-	
-	this.id = null;
-	this.user = faxJob.getUser();
-	this.password = faxJob.getPassword();
-	this.file_name = faxJob.getFile_name();
-	this.fax_line = faxJob.getFax_line();
-	this.destination = faxJob.getDestination();
-	this.status = faxJob.getStatus();
-	this.numPages = faxJob.getNumPages();
-	this.stamp = faxJob.getStamp();
-	this.document = faxJob.getDocument();
-	
+    public FaxJob( FaxJob faxJob ) {	
+		this.id = null;
+		this.user = faxJob.getUser();
+		this.password = faxJob.getPassword();
+		this.file_name = faxJob.getFile_name();
+		this.fax_line = faxJob.getFax_line();
+		this.destination = faxJob.getDestination();
+		this.status = faxJob.getStatus();
+		this.statusString = faxJob.getStatusString();
+		this.numPages = faxJob.getNumPages();
+		this.stamp = faxJob.getStamp();
+		this.document = faxJob.getDocument();
+		this.jobId = faxJob.getJobId();
+		this.senderEmail = faxJob.getSenderEmail();
+		this.direction = faxJob.getDirection();
     }
         
     private static final long serialVersionUID = 1L;
@@ -117,6 +118,12 @@ public class FaxJob extends AbstractModel<Integer> {
     private String statusString;
     
     private Integer demographicNo;
+    
+    @Transient
+    private String senderEmail;
+    
+    @Transient
+    private Direction direction;
     
     /**
      * @return the id
@@ -178,6 +185,23 @@ public class FaxJob extends AbstractModel<Integer> {
     public void setStatus(STATUS status) {
         this.status = status;
     }
+ 
+    /**
+     * The direction of the fax or fax inbox. 
+     * IN = incoming, OUT = outgoing
+     */
+    public Direction getDirection() {
+    	return this.direction;
+    }
+    
+    /**
+     * The direction of the fax or fax inbox. 
+     * IN = incoming, OUT = outgoing
+     */
+    public void setDirection(Direction direction) {
+    	this.direction = direction;
+    }
+    
     /**
      * @return the document
      */
@@ -302,7 +326,20 @@ public class FaxJob extends AbstractModel<Integer> {
     public void setDemographicNo(Integer demographic_no) {
 	this.demographicNo = demographic_no;
     }
-    
-    
+
+
+    /**
+     * Get the senders email. Required for SRFax
+     */
+	public String getSenderEmail() {
+		return senderEmail;
+	}
+
+	/**
+	 * Set the senders email. Required for SRFax
+	 */
+	public void setSenderEmail(String senderEmail) {
+		this.senderEmail = senderEmail;
+	}
 
 }
