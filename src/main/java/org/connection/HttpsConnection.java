@@ -35,6 +35,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import org.apache.log4j.Logger;
@@ -131,7 +133,7 @@ public class HttpsConnection {
 			scon.setRequestProperty("Accept", "application/json");
 
 			if(auth != null) {
-				String encoded = new sun.misc.BASE64Encoder().encode( auth.getBytes() );
+				String encoded = Base64.getEncoder().encodeToString(auth.getBytes());
 				scon.setRequestProperty("Authorization", "Basic " + encoded );
 			}
 
