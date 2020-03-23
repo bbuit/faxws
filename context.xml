@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Context path="/faxWs">
 
         <Realm className="org.apache.catalina.realm.JDBCRealm"

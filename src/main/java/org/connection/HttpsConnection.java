@@ -113,7 +113,7 @@ public class HttpsConnection {
 		return this.jsonWriter( in );
 	}
 
-	@SuppressWarnings("restriction")
+
 	private void execute(URL uri, Action method, String auth, String input) 
 			throws IOException, RuntimeException, KeyManagementException, NoSuchAlgorithmException {
 

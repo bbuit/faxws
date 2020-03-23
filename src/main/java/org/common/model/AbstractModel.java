@@ -30,6 +30,8 @@ import org.util.MiscUtils;
 
 public abstract class AbstractModel<T> implements java.io.Serializable
 {		
+
+	private static final long serialVersionUID = 1303075391611938757L;
 	protected static final String OBJECT_NOT_YET_PERISTED="The object is not persisted yet, this operation requires the object to already be persisted.";
 	
 	public abstract T getId();

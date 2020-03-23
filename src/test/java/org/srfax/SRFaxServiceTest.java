@@ -25,15 +25,12 @@ package org.srfax;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 
 import org.apache.geronimo.mail.util.Base64;
 import org.common.model.FaxJob;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 import org.service.FaxServiceFactory;
 
 /**
