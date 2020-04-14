@@ -13,7 +13,7 @@
 	<!-- ############################# -->
 
 	<category name="org">
-		<priority value="DEBUG" />
+		<priority value="INFO" />
 	</category>
 
 	
