@@ -20,7 +20,7 @@ cd ./git
 git clone https://dennis_warren@bitbucket.org/openoscar/faxws.git
 
 ## 4. Checkout
-## git checkout origin/release -b
+git checkout origin/release -b
 
 # 5. current MySQL pass and username
 echo "Setting passwords... "
