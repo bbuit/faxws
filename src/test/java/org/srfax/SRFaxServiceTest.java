@@ -26,7 +26,7 @@ package org.srfax;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.geronimo.mail.util.Base64;
+//import com.sun.xml.internal.messaging.saaj.util.Base64;
 import org.common.model.FaxJob;
 import org.junit.After;
 import org.junit.Assert;
@@ -61,7 +61,7 @@ public class SRFaxServiceTest {
 		faxService = null;
 	}
 	
-	// @Test
+	//@Test
 	public void testGetFaxStatus() {
 
 		FaxJob faxJob2 = new FaxJob();
@@ -95,22 +95,22 @@ public class SRFaxServiceTest {
 	}
 
 	// @Test
-	public void testSendFax() {
-		System.out.println("testSendFax()");
-		FaxJob faxJob = new FaxJob();
-		faxJob.setUser(username);
-		faxJob.setPassword(password);
-		faxJob.setSenderEmail("dwarren@colcamex.com");
-		faxJob.setDestination("-(604) 685-9264");
-		faxJob.setFile_name("SRFax-Fax-API-Documentation.pdf");
-		faxJob.setDocument(encodeFileToBase64("/SRFax-Fax-API-Documentation.pdf"));
-		faxJob.setFax_line(faxline);
-		try {
-			System.out.println(faxService.sendFax(faxJob));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+//	public void testSendFax() {
+//		System.out.println("testSendFax()");
+//		FaxJob faxJob = new FaxJob();
+//		faxJob.setUser(username);
+//		faxJob.setPassword(password);
+//		faxJob.setSenderEmail("dwarren@colcamex.com");
+//		faxJob.setDestination("-(604) 685-9264");
+//		faxJob.setFile_name("SRFax-Fax-API-Documentation.pdf");
+//		faxJob.setDocument(encodeFileToBase64("/SRFax-Fax-API-Documentation.pdf"));
+//		faxJob.setFax_line(faxline);
+//		try {
+//			System.out.println(faxService.sendFax(faxJob));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	// @Test
 	public void testGetFaxes() {
@@ -167,22 +167,22 @@ public class SRFaxServiceTest {
 		}
 	}
 	
-	private String encodeFileToBase64(String fileName) {
-
-		InputStream is = this.getClass().getResourceAsStream(fileName);
-		byte[] bytes = null;
-		try {
-			bytes = loadFile(is);
-			is.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		byte[] encoded = Base64.encode(bytes);
-		String encodedString = new String(encoded);
-
-		return encodedString;
-	}
+//	private String encodeFileToBase64(String fileName) {
+//
+//		InputStream is = this.getClass().getResourceAsStream(fileName);
+//		byte[] bytes = null;
+//		try {
+//			bytes = loadFile(is);
+//			is.close();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//
+//		byte[] encoded = Base64.encode(bytes);
+//		String encodedString = new String(encoded);
+//
+//		return encodedString;
+//	}
 	
 	private static byte[] loadFile(InputStream is) throws IOException {
 

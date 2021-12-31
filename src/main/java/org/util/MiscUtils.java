@@ -23,7 +23,9 @@
  */
 package org.util;
 
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class MiscUtils {
 
@@ -33,9 +35,9 @@ public class MiscUtils {
      */
     public static Logger getLogger()
     {
-	StackTraceElement[] ste = Thread.currentThread().getStackTrace();
-	String caller = ste[2].getClassName();
-	return(Logger.getLogger(caller));
+        StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+        String caller = ste[2].getClassName();
+        return LogManager.getLogger(caller);
     }
 	
 }

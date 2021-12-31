@@ -39,7 +39,8 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.cxf.common.util.Base64Exception;
 import org.apache.cxf.common.util.Base64Utility;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.Logger;
 import org.common.model.FaxJob;
 import org.util.FaxProperties;
 import org.util.MiscUtils;

@@ -18,9 +18,10 @@ sudo apt install maven
 mkdir -p ./git
 cd ./git
 git clone https://dennis_warren@bitbucket.org/openoscar/faxws.git
+cd ./faxws
 
 ## 4. Checkout
-git checkout origin/release -b
+#git checkout release
 
 # 5. current MySQL pass and username
 echo "Setting passwords... "

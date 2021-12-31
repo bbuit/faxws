@@ -37,7 +37,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import javax.ws.rs.WebApplicationException;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.Logger;
 import org.common.model.FaxJob;
 import org.common.model.FaxJob.Direction;
 import org.connection.HttpsConnection;

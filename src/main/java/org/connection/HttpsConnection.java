@@ -39,7 +39,7 @@ import java.util.Base64;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.util.MiscUtils;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;

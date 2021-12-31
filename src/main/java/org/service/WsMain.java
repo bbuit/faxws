@@ -26,7 +26,7 @@ package org.service;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.common.model.FaxJob;
 import org.util.MiscUtils;
