@@ -34,7 +34,7 @@
 		</property>
 		<property name="jpaProperties">
 			<props>
-				<prop key="openjpa.Log">log4j</prop>
+				<prop key="openjpa.Log">log4j2</prop>
 				<prop key="openjpa.DetachState">fgs(DetachedStateField=true)</prop>
 				<prop key="openjpa.DataCache">true(CacheSize=10000, SoftReferenceSize=0)</prop>
 				<prop key="openjpa.DataCacheTimeout">3600000</prop>

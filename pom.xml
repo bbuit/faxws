@@ -9,7 +9,8 @@
   <properties>
   		<cxf-version>3.4.5</cxf-version>
   		<java-version>1.8</java-version>
-	  	<spring-version>5.3.14</spring-version>
+	    <!-- OpenJPA does not play nice with Spring 5 -->
+	  	<spring-version>4.3.11.RELEASE</spring-version>
 	  	<log4j2.version>2.17.0</log4j2.version>
   </properties>
   <licenses>
@@ -54,19 +55,19 @@
                   <strictCheck>true</strictCheck>	         	
 	         </configuration>
          </plugin>
-	     <plugin>
-			 <groupId>org.flywaydb</groupId>
-			 <artifactId>flyway-maven-plugin</artifactId>
-			 <version>6.3.1</version>
-			     <configuration>
-					<url>jdbc:mysql:///</url>
-					<connectRetries>5</connectRetries>
- 					<locations>filesystem:./database/mysql</locations>
-			        <schemas>
-			            <schema>OscarFax</schema>
-			        </schemas>
-			    </configuration>
-		</plugin>
+<!--	     <plugin>-->
+<!--			 <groupId>org.flywaydb</groupId>-->
+<!--			 <artifactId>flyway-maven-plugin</artifactId>-->
+<!--			 <version>6.3.1</version>-->
+<!--			     <configuration>-->
+<!--					<url>jdbc:mysql:///</url>-->
+<!--					<connectRetries>5</connectRetries>-->
+<!-- 					<locations>filesystem:./database/mysql</locations>-->
+<!--			        <schemas>-->
+<!--			            <schema>OscarFax</schema>-->
+<!--			        </schemas>-->
+<!--			    </configuration>-->
+<!--		</plugin>-->
 	</plugins>
   </build>
   <dependencies>
@@ -100,13 +101,6 @@
 		  <artifactId>log4j-api</artifactId>
 		  <version>${log4j2.version}</version>
 	  </dependency>
-
-	  <!--Enables log4j-2 binding from libraries that still use older Log4j-1 -->
-<!--	  <dependency>-->
-<!--		  <groupId>org.apache.logging.log4j</groupId>-->
-<!--		  <artifactId>log4j-1.2-api</artifactId>-->
-<!--		  <version>${log4j2.version}</version>-->
-<!--	  </dependency>-->
 
   	<dependency>
   		<groupId>org.springframework</groupId>
