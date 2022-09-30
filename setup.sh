@@ -17,7 +17,7 @@ sudo apt install maven
 ## 3. Clone
 mkdir -p ./git
 cd ./git
-git clone https://dennis_warren@bitbucket.org/openoscar/faxws.git
+git clone https://github.com/bbuit/faxws.git
 cd ./faxws
 
 ## 4. Checkout
